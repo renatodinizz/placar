@@ -1,0 +1,190 @@
+<!-- Documento HTML principal para o Rummikub Timer -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rummikub Turno</title>
+    <!-- Link para o arquivo de estilos CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- font do título -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Eagle+Lake&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Página 1: Tela de Boas-Vindas -->
+    <div id="welcome-page" class="page active">
+        <div class="container">
+            <h1 class="main-title">Rummikub Turno</h1>
+            <!-- Botão para iniciar um novo jogo -->
+            <button id="new-game-btn" class="btn btn-primary">NOVO JOGO</button>
+        </div>
+        <!-- Rodapé discreto com créditos do criador -->
+        <footer class="footer">
+            <p>Criado por <span class="autor">Renato Diniz</span></p>
+        </footer>
+    </div>
+
+    <!-- Página 2: Configuração do Jogo -->
+    <div id="config-page" class="page">
+        <!-- Botão de voltar minimalista -->
+        <button id="back-btn-config" class="back-btn">&lt;</button>
+        <div class="container">
+            <div class="config-section">
+                <label class="section-label">Número de jogadores</label>
+                <!-- Botão para alternar o número de jogadores (2, 3 ou 4) -->
+                <button id="players-toggle" class="toggle-btn">2</button>
+                
+                <!-- Contêiner para ícones e inputs de jogadores para manter o layout fixo -->
+                <div class="players-config-container">
+                    <div class="players-icons" id="players-icons">
+                        <!-- Ícones dos jogadores serão gerados dinamicamente via JavaScript -->
+                    </div>
+                    
+                    <div class="players-inputs" id="players-inputs">
+                        <!-- Inputs para os nomes dos jogadores serão gerados dinamicamente via JavaScript -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="config-section">
+                <label class="section-label">Tempo por turno</label>
+                <!-- Botão para alternar o tempo limite por turno -->
+                <button id="time-toggle" class="toggle-btn">1 minuto</button>
+            </div>
+            
+            <!-- Botão para continuar para a próxima etapa de configuração -->
+            <button id="continue-btn" class="btn btn-primary">CONTINUAR</button>
+        </div>
+    </div>
+
+    <!-- Página 3: Seleção do Primeiro Jogador -->
+    <div id="first-player-page" class="page">
+        <!-- Botão de voltar minimalista -->
+        <button id="back-btn-first" class="back-btn">&lt;</button>
+        <div class="container">
+            <h2 class="page-title">Selecione o jogador que irá começar</h2>
+            <div class="players-selection" id="players-selection">
+                <!-- Ícones e nomes dos jogadores para seleção serão gerados dinamicamente -->
+            </div>
+            <!-- Botão para iniciar o jogo após a seleção do primeiro jogador -->
+            <button id="start-game-btn" class="btn btn-primary">COMEÇAR</button>
+        </div>
+    </div>
+
+    <!-- Página 4: Jogo Principal (Timer e Controles) -->
+    <div id="game-page" class="page">
+        <!-- Botão de voltar minimalista -->
+        <button id="back-btn-game" class="back-btn">&lt;</button>
+        <div class="container">
+            <!-- Exibição dos jogadores e destaque do jogador atual -->
+            <div class="players-display" id="players-display">
+                <!-- Jogadores serão exibidos dinamicamente -->
+            </div>
+            
+            <!-- Controles do jogo (terminar turno, finalizar rodada) -->
+            <div class="game-controls">
+                <button id="end-turn-btn" class="btn btn-secondary">TERMINAR TURNO</button>
+                <button id="end-round-btn" class="btn btn-warning">FINALIZAR RODADA</button>
+            </div>
+            
+            <!-- Seção do timer, com altura mínima para evitar deslocamento -->
+            <div class="timer-section">
+                <!-- Botão para iniciar o timer (visível antes do timer começar) -->
+                <button id="start-timer-btn" class="btn btn-primary btn-large">COMEÇAR</button>
+                <!-- Display do timer (visível quando o timer está ativo) -->
+                <div id="timer-display" class="timer-display hidden">
+                    <span id="timer-text">01:00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Página 5: Inserção de Pontuação Individual -->
+    <div id="scoring-page" class="page">
+        <!-- Botão de voltar minimalista -->
+        <button id="back-btn-scoring" class="back-btn">&lt;</button>
+        <div class="container">
+            <!-- Exibição do jogador atual para inserção de pontos -->
+            <div class="current-player-display" id="current-player-display">
+                <!-- Jogador atual será exibido dinamicamente -->
+            </div>
+            
+            <h3 class="question">Quantos pontos restaram na mão?</h3>
+            
+            <!-- Input para a quantidade de pontos, com teclado numérico para mobile -->
+            <input type="number" id="points-input" class="points-input" min="0" placeholder="0" inputmode="numeric" pattern="[0-9]*">
+            
+            <!-- Botão para confirmar os pontos do jogador atual -->
+            <button id="confirm-points-btn" class="btn btn-primary">CONFIRMAR</button>
+            <!-- Botão para avançar para a próxima fase (visível após todos os jogadores pontuarem) -->
+            <button id="next-scoring-btn" class="btn btn-primary hidden">PRÓXIMO</button>
+        </div>
+    </div>
+
+    <!-- Página 6: Tabela de Pontuação Geral -->
+    <div id="scoreboard-page" class="page">
+        <!-- Botão de voltar minimalista -->
+        <button id="back-btn-scoreboard" class="back-btn">&lt;</button>
+        <div class="container">
+            <!-- Exibição dos totais de pontos de cada jogador -->
+            <div class="players-totals" id="players-totals">
+                <!-- Totais dos jogadores serão exibidos dinamicamente -->
+            </div>
+            
+            <!-- Tabela detalhada com as pontuações de cada rodada -->
+            <div class="scoreboard-table" id="scoreboard-table">
+                <!-- Tabela será gerada dinamicamente -->
+            </div>
+            
+            <!-- Controles para próxima rodada ou finalizar jogo -->
+            <div class="scoreboard-controls">
+                <button id="next-round-btn" class="btn btn-primary">PRÓXIMA RODADA</button>
+                <button id="finish-game-btn" class="btn btn-warning">FINALIZAR JOGO</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Página 7: Resultado Final do Jogo -->
+    <div id="result-page" class="page">
+        <div class="container">
+            <h2 class="winner-title">🏆 VENCEDOR 🏆</h2>
+            
+            <!-- Exibição do jogador vencedor -->
+            <div class="winner-display" id="winner-display">
+                <!-- Vencedor será exibido dinamicamente -->
+            </div>
+            
+            <!-- Exibição das pontuações finais de todos os jogadores -->
+            <div class="final-scores" id="final-scores">
+                <!-- Pontuações finais serão exibidas dinamicamente -->
+            </div>
+            
+            <!-- Controles para jogar novamente -->
+            <div class="result-controls">
+                <button id="same-players-btn" class="btn btn-primary">MESMOS JOGADORES</button>
+                <button id="new-players-btn" class="btn btn-secondary">NOVOS JOGADORES</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmação (usado para finalizar rodada/jogo) -->
+    <div id="confirmation-modal" class="modal hidden">
+        <div class="modal-content">
+            <p id="modal-message">Tem certeza que deseja finalizar a rodada?</p>
+            <div class="modal-buttons">
+                <button id="modal-yes" class="btn btn-primary">SIM</button>
+                <button id="modal-no" class="btn btn-secondary">NÃO</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay para o modal (escurece o fundo quando o modal está ativo) -->
+    <div id="modal-overlay" class="modal-overlay hidden"></div>
+
+    <!-- Link para o arquivo de script JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
+
