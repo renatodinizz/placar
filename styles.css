@@ -59,7 +59,7 @@ body {
     width: 3rem;
     height: 3rem;
     border-radius: 50%;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: bold;
     color: #ffffff;
     cursor: pointer;
@@ -289,7 +289,7 @@ body {
 }
 
 .player-selector.selected {
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.4);
     transform: scale(1.2);
     box-shadow: 0 0 3px rgb(82, 255, 66, 0.7), 0 0 6px rgb(82, 255, 66, 0.7), 0 0 10px rgb(82, 255, 66, 0.7), 0 0 15px rgb(82, 255, 66, 0.7);
 }
@@ -335,7 +335,7 @@ body {
 }
 
 .player-display.current {
-    background: rgba(3, 3, 3, 0.2);
+    background: rgba(0, 0, 0, 0.4);
     transform: scale(1.2);
     box-shadow: 0 0 3px rgb(82, 255, 66, 0.7), 0 0 6px rgb(82, 255, 66, 0.7), 0 0 10px rgb(82, 255, 66, 0.7), 0 0 15px rgb(82, 255, 66, 0.7);
 }
@@ -484,7 +484,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.4);
     padding: 15px;
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -588,6 +588,7 @@ body {
     .final-player { padding: 20px; }
     .final-score { font-size: 20px; }
 }
+
 /* === Fixes de centralização === */
 .players-config-container { align-items: center; }           /* página 2 */
 #players-inputs { margin-left: auto; margin-right: auto; }   /* garante centralização do bloco */
